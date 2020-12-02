@@ -28,17 +28,23 @@ namespace PluginDotNet.Contexts
         {
             var assemblyName = type.Assembly.GetName();
             var assemblies = _metadataLoadContext.GetAssemblies();
-
             var assembly = assemblies.FirstOrDefault(x => string.Equals(x.FullName, assemblyName.FullName));
 
             if (assembly == null)
             {
-                assembly = _metadataLoadContext.LoadFromAssemblyName(assemblyName);
+                try
+                {
+                    assembly = _metadataLoadContext.LoadFromAssemblyName(assemblyName);
+                    var result = assembly.GetType(type.FullName);
+                    return result;
+                }
+                catch (Exception)
+                {
+
+                }
             }
 
-            var result = assembly.GetType(type.FullName);
-
-            return result;
+            return null; 
         }
     }
 }

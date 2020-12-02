@@ -3,11 +3,29 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>PluginDotNet</RootNamespace>
+    <Version>0.0.2</Version>
+    <Description>A plugin framework.</Description>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/BenDerPan/Plugin.Net</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/BenDerPan/Plugin.Net</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>.net5 plugin</PackageTags>
+    <PackageReleaseNotes>simple work version.</PackageReleaseNotes>
+    <Authors>BenDerPan</Authors>
+    <Company>https://github.com/BenDerPan</Company>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Reflection.MetadataLoadContext" Version="5.0.0" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

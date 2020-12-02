@@ -34,7 +34,6 @@ namespace PluginDotNet.Providers
         public void Initialize()
         {
             var marks = new List<string>();
-            var locator = new TypeLocator();
             _plugin = new Plugin(_pluginType.Assembly, _pluginType, _metaLoader.PluginMetaDataLoader.GetPluginName(_pluginType),
                 _metaLoader.PluginMetaDataLoader.GetPluginVersion(_pluginType),
                 this, _metaLoader.PluginMetaDataLoader.GetPluginDescription(_pluginType),

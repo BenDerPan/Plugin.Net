@@ -8,7 +8,7 @@ namespace FolderExample
     {
         static void Main(string[] args)
         {
-            var folderSource = new FolderPluginSourceProvider(folderPath: ".", configureFinder: cfg => {
+            var folderSource = new FolderPluginSourceProvider(folderPath: ".", configureLocator: cfg => {
                 cfg.AssignableTo(typeof(IScanerPlugin));
                 cfg.IsInterface(false);
             }, null, null);

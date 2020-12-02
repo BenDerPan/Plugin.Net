@@ -22,7 +22,7 @@ namespace PluginDotNet.Providers
 
         public bool IsInitialized { get; private set; }
 
-        public FolderPluginSourceProvider(string folderPath, Action<TypeDataInfoBuilder> configureFinder, TypeDataInfo info,
+        public FolderPluginSourceProvider(string folderPath, Action<TypeDataInfoBuilder> configureLocator, TypeDataInfo info,
             FolderPluginSourceOptions options)
         {
             if (string.IsNullOrWhiteSpace(folderPath))
@@ -43,14 +43,14 @@ namespace PluginDotNet.Providers
                 _options.TypeLocatorOptions.TypeInfos = new List<TypeDataInfo>();
             }
 
-            if (configureFinder != null)
+            if (configureLocator != null)
             {
                 var builder = new TypeDataInfoBuilder();
-                configureFinder(builder);
+                configureLocator(builder);
 
-                var criteria = builder.Build();
+                var buildInfo = builder.Build();
 
-                _options.TypeLocatorOptions.TypeInfos.Add(criteria);
+                _options.TypeLocatorOptions.TypeInfos.Add(buildInfo);
             }
 
             if (info != null)

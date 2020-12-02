@@ -49,7 +49,7 @@ namespace PluginDotNet.Locators
             if (info.Inherits!=null)
             {
                 var inheriedType = ctx.FindType(info.Inherits);
-                if (!inheriedType.IsAssignableFrom(type))
+                if (inheriedType == null || !inheriedType.IsAssignableFrom(type))
                 {
                     return false;
                 }
@@ -58,7 +58,7 @@ namespace PluginDotNet.Locators
             if (info.Implements!=null)
             {
                 var interfaceType = ctx.FindType(info.Implements);
-                if (!interfaceType.IsAssignableFrom(type))
+                if (interfaceType==null||!interfaceType.IsAssignableFrom(type))
                 {
                     return false;
                 }
@@ -67,7 +67,7 @@ namespace PluginDotNet.Locators
             if (info.AssignableTo!=null)
             {
                 var assignType = ctx.FindType(info.AssignableTo);
-                if (!assignType.IsAssignableFrom(type))
+                if (assignType==null||!assignType.IsAssignableFrom(type))
                 {
                     return false;
                 }
@@ -105,6 +105,12 @@ namespace PluginDotNet.Locators
             }
 
             var retList = new List<Type>();
+
+            if (assembly==null)
+            {
+                return retList;
+            }
+
             var types = assembly.GetExportedTypes();
             foreach (var type in types)
             {

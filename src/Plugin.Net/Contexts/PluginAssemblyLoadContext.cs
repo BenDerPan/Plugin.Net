@@ -30,8 +30,16 @@ namespace PluginDotNet.Contexts
         public Assembly Load()
         {
             var assemblyName = new AssemblyName(Path.GetFileNameWithoutExtension(_pluginPath));
-
-            var result = LoadFromAssemblyName(assemblyName);
+            Assembly result = null;
+            try
+            {
+                Console.WriteLine($"Load Assembly:  Path={_pluginPath}, AssemblyName={assemblyName}");
+                result = LoadFromAssemblyName(assemblyName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Load Error: Path={_pluginPath}, AssemblyName={assemblyName}, Error:{e.Message}");
+            }
 
             return result;
         }
