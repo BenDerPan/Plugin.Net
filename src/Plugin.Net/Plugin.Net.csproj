@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>PluginDotNet</RootNamespace>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <Description>A plugin framework.</Description>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/BenDerPan/Plugin.Net</PackageProjectUrl>

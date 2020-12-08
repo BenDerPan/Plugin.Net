@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PluginDotNet.Contexts
 {
-    public class MetadataTypeLocatorContext:ITypeLocatorContext
+    public class MetadataTypeLocatorContext : ITypeLocatorContext
     {
         readonly MetadataLoadContext _metadataLoadContext;
 
@@ -30,21 +30,20 @@ namespace PluginDotNet.Contexts
             var assemblies = _metadataLoadContext.GetAssemblies();
             var assembly = assemblies.FirstOrDefault(x => string.Equals(x.FullName, assemblyName.FullName));
 
-            if (assembly == null)
+
+            try
             {
-                try
+                if (assembly == null)
                 {
                     assembly = _metadataLoadContext.LoadFromAssemblyName(assemblyName);
-                    var result = assembly.GetType(type.FullName);
-                    return result;
                 }
-                catch (Exception)
-                {
 
-                }
+                return assembly.GetType(type.FullName);
             }
-
-            return null; 
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
